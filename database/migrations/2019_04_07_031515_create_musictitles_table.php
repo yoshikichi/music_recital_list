@@ -16,7 +16,7 @@ class CreateMusictitlesTable extends Migration
         Schema::create('musictitles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->integer('composer');
+            $table->string('composer');
             $table->integer('enabled');
             $table->timestamps();
         });

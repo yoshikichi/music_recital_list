@@ -13,8 +13,8 @@ class HomeController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->header('Stera Music')
-            ->description('発表会の楽曲リスト作成')
+            ->header('aaaDashboard')
+            ->description('Description...')
             ->row(Dashboard::title())
             ->row(function (Row $row) {
 
