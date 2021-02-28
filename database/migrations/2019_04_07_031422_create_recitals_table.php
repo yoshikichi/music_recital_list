@@ -17,11 +17,11 @@ class CreateRecitalsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->date('planeddate');
-            $table->integer('enabled');
-            $table->integer('looked');
-            $table->string('comment1');
-            $table->string('comment2');
-            $table->string('comment3');
+            $table->integer('enabled')->default(0)->nullable();
+            $table->integer('looked')->default(0)->nullable();
+            $table->string('comment1')->default('')->nullable();
+            $table->string('comment2')->default('')->nullable();
+            $table->string('comment3')->default('')->nullable();
             $table->timestamps();
         });
     }

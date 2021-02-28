@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRecitalProgramsTable extends Migration
+class CreateRecitalProgramMusicsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,15 @@ class CreateRecitalProgramsTable extends Migration
      */
     public function up()
     {
-        Schema::create('recital_programs', function (Blueprint $table) {
+        Schema::create('recital_program_musics', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('recital_id');
-            $table->integer('teacher_id');
             $table->integer('player_id');
-            $table->string('age')->default('')->nullable();
+            $table->integer('musictitle_id');
+            $table->integer('rank')->default(0)->nullable();
+            $table->integer('admin_user_id');
+            $table->integer('age')->default(0)->nullable();
             $table->string('school_year')->default('')->nullable();
-            $table->integer('music1_id')->default(0)->nullable();
-            $table->integer('music2_id')->default(0)->nullable();
-            $table->integer('music3_id')->default(0)->nullable();
-            $table->integer('music4_id')->default(0)->nullable();
-            $table->integer('music5_id')->default(0)->nullable();
             $table->string('chair_hight')->default('')->nullable();
             $table->string('foot_hight')->default('')->nullable();
             $table->string('pedal_hight')->default('')->nullable();
@@ -38,6 +35,7 @@ class CreateRecitalProgramsTable extends Migration
             $table->string('comment1')->default('')->nullable();
             $table->string('comment2')->default('')->nullable();
             $table->string('comment3')->default('')->nullable();
+
             $table->timestamps();
         });
     }
@@ -49,6 +47,6 @@ class CreateRecitalProgramsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('recital_programs');
+        Schema::dropIfExists('recital_program_musics');
     }
 }

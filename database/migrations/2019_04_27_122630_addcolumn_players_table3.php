@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColumnAdminUsersTable1 extends Migration
+class AddcolumnPlayersTable3 extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class AddColumnAdminUsersTable1 extends Migration
      */
     public function up()
     {
-        Schema::table('admin_users', function (Blueprint $table) {
+        Schema::table('players', function (Blueprint $table) {
             //
-            $table->string('email')->nullable();
+            $table->date('join_date')->after('classroom')->nullable();
         });
     }
 
@@ -26,7 +26,7 @@ class AddColumnAdminUsersTable1 extends Migration
      */
     public function down()
     {
-        Schema::table('admin_users', function (Blueprint $table) {
+        Schema::table('players', function (Blueprint $table) {
             //
         });
     }
