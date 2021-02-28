@@ -9,26 +9,41 @@ class RecitalProgram extends Model
     //belongsTo設定
     public function AdminUser()
     {
-        return $this->belongsTo('App\AdminUser','id'.'teacher_id');
+        return $this->belongsTo(AdminUser::class,'teacher_id');
     }
     //belongsTo設定
     public function Recital()
     {
-        return $this->belongsTo('App\Recital','id'.'recital_id');
+        return $this->belongsTo(Recital::class,'recital_id');
     }
     //belongsTo設定
     public function Player()
     {
-        return $this->belongsTo('App\Player','id'.'player_id');
+        return $this->belongsTo(Player::class,'player_id');
     }
      //belongsTo設定
     public function music1()
     {
-        return $this->belongsTo('App\Musictitle','id'.'music1_id');
+        return $this->belongsTo(Musictitle::class,'music1_id');
     }
     //belongsTo設定
     public function music2()
     {
-        return $this->belongsTo('App\Musictitle','id'.'music2_id');
+        return $this->belongsTo(Musictitle::class,'music2_id');
+    }
+    //belongsTo設定
+    public function music3()
+    {
+        return $this->belongsTo(Musictitle::class,'music3_id');
+    }
+    //belongsTo設定
+    public function music4()
+    {
+        return $this->belongsTo(Musictitle::class,'music4_id');
+    }
+    //belongsTo設定
+    public function music5()
+    {
+        return $this->belongsTo(Musictitle::class,'music5_id');
     }
 }

@@ -10,6 +10,6 @@ class Player extends Model
     //belongsTo設定
     public function AdminUser()
     {
-        return $this->belongsTo('App\AdminUser','id'.'teacher_id');
+        return $this->belongsTo(AdminUser::class,'teacher_id');
     }
 }

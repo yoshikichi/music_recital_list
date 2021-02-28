@@ -23,8 +23,8 @@ class RecitalController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->header('発表会マスター')
-            ->description('発表会マスターを管理します')
+            ->header('発表会')
+            ->description('発表会を管理します')
             ->body($this->grid());
     }
 
@@ -38,8 +38,8 @@ class RecitalController extends Controller
     public function show($id, Content $content)
     {
         return $content
-            ->header('Detail')
-            ->description('description')
+            ->header('詳細')
+            ->description('発表会管理')
             ->body($this->detail($id));
     }
 
@@ -53,8 +53,8 @@ class RecitalController extends Controller
     public function edit($id, Content $content)
     {
         return $content
-            ->header('Edit')
-            ->description('description')
+            ->header('編集')
+            ->description('発表会管理')
             ->body($this->form()->edit($id));
     }
 
@@ -67,8 +67,8 @@ class RecitalController extends Controller
     public function create(Content $content)
     {
         return $content
-            ->header('Create')
-            ->description('description')
+            ->header('新規')
+            ->description('発表会管理')
             ->body($this->form());
     }
 
@@ -81,17 +81,27 @@ class RecitalController extends Controller
     {
         $grid = new Grid(new Recital);
 
-        $grid->id('Id');
-        $grid->name('発表会名');
-        $grid->planeddate('開催日');
-        $grid->enabled('有効');
-        $grid->looked('ロック');
+        $grid->id('Id')->sortable();
+        $grid->name('発表会名')->sortable();
+        $grid->planeddate('開催日')->sortable();
+        //$show->enabled('有効');
+        $states = [
+            'on'  => ['value' => 1, 'text' => '有効', 'color' => 'primary'],
+            'off' => ['value' => 0, 'text' => '無効', 'color' => 'default'],
+        ];
+        $grid->enabled('有効')->switch($states);
+        //$show->looked('ロック');
+        $states2 = [
+            'on'  => ['value' => 1, 'text' => '許可', 'color' => 'primary'],
+            'off' => ['value' => 0, 'text' => 'ロック', 'color' => 'default'],
+        ];
+        $grid->looked('ロック')->switch($states2);   
         $grid->comment1('コメント1');
         $grid->comment2('コメント2');
         $grid->comment3('コメント3');
-        $grid->created_at('登録日');
-        $grid->updated_at('更新日');
-
+        $grid->created_at('作成日')->sortable();
+        $grid->updated_at('更新日')->sortable();
+		$grid->disableRowSelector();
         return $grid;
     }
 
@@ -108,12 +118,18 @@ class RecitalController extends Controller
         $show->id('Id');
         $show->name('発表会名');
         $show->planeddate('開催日');
-        $show->enabled('有効');
-        $show->looked('ロック');
+        //$show->enabled('有効');
+        $show->enabled('有効')->as(function ($released) {
+            return $released ? '有効' : '無効';
+        });
+        //$show->looked('ロック');
+        $show->looked('ロック')->as(function ($released) {
+            return $released ? '許可' : 'ロック';
+        });      
         $show->comment1('コメント1');
         $show->comment2('コメント2');
         $show->comment3('コメント3');
-        $show->created_at('登録日');
+        $show->created_at('作成日');
         $show->updated_at('更新日');
 
         return $show;
@@ -128,10 +144,20 @@ class RecitalController extends Controller
     {
         $form = new Form(new Recital);
 
-        $form->text('name', '発表会名');
-        $form->date('planeddate', '開催日')->default(date('Y-m-d'));
-        $form->number('enabled', '有効');
-        $form->number('looked', 'ロック');
+        $form->text('name', '発表会名')->rules('required');
+        $form->date('planeddate', '開催日')->default(date('Y-m-d'))->rules('required');
+        //$form->number('enabled', 'Enabled');
+                $states = [
+                    'on' => ['value'=>1, 'text'=>'有効'],
+                    'off' => ['value'=>0, 'text'=>'無効'],
+                ];
+                $form->switch('enabled', '有効')->states($states);
+        //$form->number('looked', 'Looked');
+                $states2 = [
+                    'on' => ['value'=>1, 'text'=>'許可'],
+                    'off' => ['value'=>0, 'text'=>'ロック'],
+                ];
+                $form->switch('looked', '許可')->states($states2);
         $form->text('comment1', 'コメント1');
         $form->text('comment2', 'コメント2');
         $form->text('comment3', 'コメント3');

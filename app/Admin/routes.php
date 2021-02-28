@@ -17,7 +17,12 @@ Route::group([
     $router->resource('players', PlayerController::class);
     $router->resource('musictitles', MusictitleController::class);
     $router->resource('recital_programs', RecitalProgramController::class);
+    $router->resource('recital_programs_musics', RecitalProgramMusicController::class);
+    $router->resource('recital_programs_options', RecitalProgramOptionController::class);
     $router->get('auth/setting', 'CustomAuthController@getSetting');
     $router->put('auth/setting', 'CustomAuthController@putSetting');
+	$router->resource('Adminmail/recitalmail', RecitalMailController::class);
+	//$router->get('Adminmail/recitalmail/mailto/{id}', 'RecitalMailController@mailto');
 
 });
+
