@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+// 送信メール本文のプレビュー
+Route::get('sample/mailable/preview', function () {
+  return new App\Mail\RecitalPlanNotification();
+});
+
+Route::get('recitalplan/mailable/send/{admid?}', 'RecitalPlanSendController@RecitalPlanSend');
+//Route::post('recitalplan/mailable/send', 'RecitalPlanSendController@RecitalPlanSend');
