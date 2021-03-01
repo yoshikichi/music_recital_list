@@ -157,7 +157,7 @@ class RecitalProgramMusicController extends Controller
         $grid->subplayer_chair('連弾いす');
         $grid->paging_chair('譜めくり椅子');
         $grid->remark('特記事項');
-        $grid->comment('演奏時間');
+        $grid->comment0('演奏時間');
         $grid->comment1('コメント1');
         $grid->comment2('コメント2');
         $grid->comment3('コメント3');
@@ -268,7 +268,7 @@ class RecitalProgramMusicController extends Controller
         $show->subplayer_chair('連弾いす');
         $show->paging_chair('譜めくり椅子');
         $show->remark('特記事項');
-        $show->comment('演奏時間');
+        $show->comment0('演奏時間');
         //$show->enabled('有効');
         //$show->enabled('有効')->as(function ($released) {
         //    return $released ? '有効' : '無効';
@@ -347,7 +347,7 @@ $form->tab('基本情報', function ($form) {
         //$form->text('paging_chair', '譜めくり椅子');
 		$form->select('paging_chair', '譜めくり椅子')->options(['無' => '無','有' => '有', '連弾のみ' => '連弾のみ']);
         $form->text('remark', '特記事項')->rules('max:100');
-        $form->time('comment', '演奏時間');
+        $form->time('comment0', '演奏時間');
         $form->text('comment1', 'コメント1')->rules('max:100');
         $form->text('comment2', 'コメント2')->rules('max:100');
         $form->text('comment3', 'コメント3')->rules('max:100');
