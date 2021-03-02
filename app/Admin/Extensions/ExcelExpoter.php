@@ -31,7 +31,7 @@ class ExcelExpoter extends AbstractExporter
 					//return array_only($item, ['recital.name', 'id', 'age', 'school_year']);
 
 						$keys = ["recital.name","recital.planeddate","recital.comment1","recital.comment2","recital.comment3",
-						"rank","adminuser.name","musictitle.title","musictitle.composer","player.name","player.sex","age","school_year","remark","comment",
+						"rank","adminuser.name","musictitle.title","musictitle.composer","player.name","player.sex","age","school_year","remark","comment0",
 						"chair_hight","foot_hight","pedal_hight","stand_hight","subplayer_chair","paging_chair",
 						"comment1","comment2","comment3"];
 					
