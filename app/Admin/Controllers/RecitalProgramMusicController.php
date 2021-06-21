@@ -332,7 +332,7 @@ $form->tab('基本情報', function ($form) {
         
         $form->select('school_year', '学年')->options(['未就園' =>'未就園', '年少' => '年少', '年中' => '年中', '年長' => '年長', 
 			'小１' => '小１','小２' => '小２','小３' => '小３','小４' => '小４','小５' => '小５','小６' => '小６', '中１' => '中１', '中２' => '中２', '中３' => '中３', 
-			'高１' => '高１','高２' => '高２','高３' => '高３', '大１' => '大１', '大２' => '大２','大３' => '大３','大４' => '大４','大人' => '大人'])->help('生徒登録で生年月日を登録している場合、発表会当日の学年（小１～中３のみ）で自動登録されます。');
+			'高１' => '高１','高２' => '高２','高３' => '高３', '大１' => '大１', '大２' => '大２','大３' => '大３','大４' => '大４','大人' => '大人'])->help('生徒登録で生年月日を登録している場合、発表会当日の学年（年少～大４のみ）で自動登録されます。');
 })->tab('詳細', function ($form) {
 		//$form->text('chair_hight', '椅子の高さ');
 	    $form->select('chair_hight', '椅子の高さ')->options(['低' => '低','低中' => '低中','中' => '中', '中高' => '中高','高' => '高']);
@@ -400,7 +400,16 @@ $form->tab('基本情報', function ($form) {
 				//echo $diffyaers;exit;
 				$gakunen = "";
                 switch (true){
-                    case $diffyaers < 7:
+                    case $diffyaers < 4:
+                        break;
+                    case $diffyaers >= 4 && $diffyaers < 5:
+                        $gakunen = "年少";
+                        break;
+                    case $diffyaers >= 5 && $diffyaers < 6:
+                        $gakunen = "年中";
+                        break;
+                    case $diffyaers >= 6 && $diffyaers < 7:
+                        $gakunen = "年長";
                         break;
                     case $diffyaers >= 7 && $diffyaers < 8:
                         $gakunen = "小１";
@@ -429,7 +438,28 @@ $form->tab('基本情報', function ($form) {
                     case $diffyaers >= 15 && $diffyaers < 16:
                         $gakunen = "中３";
                         break;
-                    case $diffyaers >= 16:
+                    case $diffyaers >= 16 && $diffyaers < 17:
+                        $gakunen = "高１";
+                        break;
+                    case $diffyaers >= 17 && $diffyaers < 18:
+                        $gakunen = "高２";
+                        break;
+                    case $diffyaers >= 18 && $diffyaers < 19:
+                        $gakunen = "高３";
+                        break;
+                    case $diffyaers >= 19 && $diffyaers < 20:
+                        $gakunen = "大１";
+                        break;
+                    case $diffyaers >= 20 && $diffyaers < 21:
+                        $gakunen = "大２";
+                        break;
+                    case $diffyaers >= 21 && $diffyaers < 22:
+                        $gakunen = "大３";
+                        break;
+                    case $diffyaers >= 22 && $diffyaers < 23:
+                        $gakunen = "大４";
+                        break;
+                    case $diffyaers >= 23:
                         break;
 					default:
 						break;
